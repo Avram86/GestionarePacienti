@@ -18,6 +18,13 @@ namespace GestionarePacienti
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+            //configure logging
+            .ConfigureLogging((hostingContext, builder) =>
+            {
+                builder.AddFile("Logs/myapp-{Date}.txt");
+                builder.AddConsole();
+                builder.AddDebug();
+            })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

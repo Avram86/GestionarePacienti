@@ -16,6 +16,7 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Identity;
 using GestionarePacienti.Areas.Identity.Data;
 
+
 namespace GestionarePacienti
 {
     public class Startup
@@ -31,13 +32,23 @@ namespace GestionarePacienti
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddRazorPages(options=>
+            {
+                options.Conventions.AddAreaPageRoute("Identity", "/Account/Login", "");
+            });
 
             services.AddDbContext<GestionarePacientiContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("GestionarePacientiContext")));
 
-            services.AddIdentity<GestionarePacientiUser, IdentityRole>()
-                    .AddEntityFrameworkStores<GestionarePacientiContext>()
+            //https://forums.asp.net/t/2160569.aspx?i+have+issue+with+register+page
+            services.AddDefaultIdentity<GestionarePacientiUser>()
+                    .AddRoles<IdentityRole>()
+                    .AddEntityFrameworkStores<ApplicationDbContext>()
                     .AddDefaultTokenProviders();
+
+            //services.AddIdentity<GestionarePacientiUser, IdentityRole>()
+            //        .AddEntityFrameworkStores<GestionarePacientiContext>()
+            //        .AddDefaultTokenProviders();
 
             services.AddScoped<IRepository<Patient>, Repository<Patient>>();
             services.AddScoped<IAppointmentDetailRepository, AppointmentDetailRepository>();
@@ -71,6 +82,7 @@ namespace GestionarePacienti
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }

@@ -36,7 +36,7 @@ namespace GestionarePacienti.Areas.Identity.Pages.Account
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
-        public string ReturnUrl { get; set; }
+        public string ReturnUrl { get; set; } = "~/AppointmentDetails";
 
         [TempData]
         public string ErrorMessage { get; set; }
@@ -62,7 +62,8 @@ namespace GestionarePacienti.Areas.Identity.Pages.Account
                 ModelState.AddModelError(string.Empty, ErrorMessage);
             }
 
-            returnUrl ??= Url.Content("~/");
+            //changed default "~/" which redirected to Home to below Url fragment in order to redirect to the appointments
+            returnUrl ??= Url.Content("~/AppointmentDetails");
 
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
@@ -74,7 +75,7 @@ namespace GestionarePacienti.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl ??= Url.Content("~/");
+            returnUrl ??= Url.Content("~/AppointmentDetails");
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         
