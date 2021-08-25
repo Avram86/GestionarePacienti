@@ -6,10 +6,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GestionarePacienti.Models;
 using GestionarePacienti.Services;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace GestionarePacienti
 {
+    [Authorize]
     public class AppointmentDetailsController : Controller
     {
         private readonly IAppointmentDetailRepository _repository;

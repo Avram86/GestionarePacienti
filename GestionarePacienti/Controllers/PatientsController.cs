@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using GestionarePacienti.Data;
 using GestionarePacienti.Models;
 using GestionarePacienti.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GestionarePacienti
 {
+    [Authorize]
     public class PatientsController : Controller
     {
         private readonly IRepository<Patient> _repository;
