@@ -13,6 +13,8 @@ using GestionarePacienti.Data;
 using GestionarePacienti.Services;
 using GestionarePacienti.Models;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Identity;
+using GestionarePacienti.Areas.Identity.Data;
 
 namespace GestionarePacienti
 {
@@ -32,6 +34,10 @@ namespace GestionarePacienti
 
             services.AddDbContext<GestionarePacientiContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("GestionarePacientiContext")));
+
+            services.AddIdentity<GestionarePacientiUser, IdentityRole>()
+                    .AddEntityFrameworkStores<GestionarePacientiContext>()
+                    .AddDefaultTokenProviders();
 
             services.AddScoped<IRepository<Patient>, Repository<Patient>>();
             services.AddScoped<IAppointmentDetailRepository, AppointmentDetailRepository>();

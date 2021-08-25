@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GestionarePacienti.Data
 {
-    public class DbContext : IdentityDbContext<GestionarePacientiUser>
+    public class ApplicationDbContext : IdentityDbContext<GestionarePacientiUser>
     {
-        public DbContext(DbContextOptions<DbContext> options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }

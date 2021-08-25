@@ -16,12 +16,12 @@ namespace GestionarePacienti.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDbContext<DbContext>(options =>
+                services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("DbContextConnection")));
 
                 services.AddDefaultIdentity<GestionarePacientiUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<DbContext>();
+                    .AddEntityFrameworkStores<ApplicationDbContext>();
             });
         }
     }
