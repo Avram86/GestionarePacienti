@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31613.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestionarePacienti.IDS", "GestionarePacienti.IDS\GestionarePacienti.IDS.csproj", "{807B7459-FE0D-40C1-8FC2-6668BAE5661C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GestionarePacienti", "GestionarePacienti\GestionarePacienti.csproj", "{2BC6B61F-8A5D-404C-942E-7656FABCFCCF}"
 EndProject
 Global
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{807B7459-FE0D-40C1-8FC2-6668BAE5661C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{807B7459-FE0D-40C1-8FC2-6668BAE5661C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{807B7459-FE0D-40C1-8FC2-6668BAE5661C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{807B7459-FE0D-40C1-8FC2-6668BAE5661C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2BC6B61F-8A5D-404C-942E-7656FABCFCCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2BC6B61F-8A5D-404C-942E-7656FABCFCCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BC6B61F-8A5D-404C-942E-7656FABCFCCF}.Release|Any CPU.ActiveCfg = Release|Any CPU

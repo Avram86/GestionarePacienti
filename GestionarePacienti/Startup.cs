@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using GestionarePacienti.Data;
 using GestionarePacienti.Services;
 using GestionarePacienti.Models;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace GestionarePacienti
 {
@@ -55,6 +56,8 @@ namespace GestionarePacienti
 
             app.UseRouting();
 
+            //enabling Authentication
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

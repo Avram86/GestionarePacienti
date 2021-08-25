@@ -61,6 +61,8 @@ namespace GestionarePacienti
 
             //3.pe baza listei de doctori generam optiunile pt select
             var viewModel = new CreateAppointmentViewModel();
+
+            //SelectListItem=(string text,string value) => legam Numele de Id
             viewModel.Doctors = doctors.Select(d => new SelectListItem(d.Name, d.Id.ToString())).ToList();
 
             //4.generam optiunile pt pacienti
@@ -186,8 +188,10 @@ namespace GestionarePacienti
 
                     appointment.Doctor = doctor;
                     appointment.Patient = patient;
+                    
+                    //!!!!!!!!!!!!!???????
+                    //error=> dubleaza inregistrarea daca nu ii asignam ID-ul
                     appointment.Id = id;
-
 
                     var result=await _repository.Update(id, appointment);
 
