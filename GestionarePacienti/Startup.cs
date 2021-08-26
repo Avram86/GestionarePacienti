@@ -15,7 +15,7 @@ using GestionarePacienti.Models;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Identity;
 using GestionarePacienti.Areas.Identity.Data;
-
+using GestionarePacienti.Hubs;
 
 namespace GestionarePacienti
 {
@@ -32,10 +32,14 @@ namespace GestionarePacienti
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddRazorPages(options=>
-            {
-                options.Conventions.AddAreaPageRoute("Identity", "/Account/Login", "");
-            });
+            services.AddRazorPages(
+            //    options=>
+            //{
+            //    //sets home page as Login page
+            //    options.Conventions.AddAreaPageRoute("Identity", "/Account/Login", "");
+            //}
+            );
+            services.AddSignalR();
 
             services.AddDbContext<GestionarePacientiContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("GestionarePacientiContext")));
@@ -83,6 +87,7 @@ namespace GestionarePacienti
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+                endpoints.MapHub<ChatHub>("/chatHub");
             });
         }
     }

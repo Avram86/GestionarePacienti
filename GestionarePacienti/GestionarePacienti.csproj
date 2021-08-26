@@ -8,6 +8,7 @@
 	  <!--IdentityModel includes a client library to use with the discovery endpoint. 
 	  This way you only need to know the base-address of IdentityServer - the actual endpoint addresses can be read from the metadata:-->
 	  <PackageReference Include="IdentityModel" Version="5.1.0" />
+	  <PackageReference Include="Microsoft.AspNet.SignalR" Version="2.4.2" />
 	  <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.9" />
 	  <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.9" />
 	  <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.9" />

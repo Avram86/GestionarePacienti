@@ -26,7 +26,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
 
-                        @*only show links if user is authenticated*@
+                       
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
@@ -39,7 +39,7 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="AppointmentDetails" asp-action="Index">Appointments</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Chat" asp-action="Index">Chat</a>
+                                <a class="nav-link text-dark" href="https://localhost:44301/ChatHub">Chat</a>
                             </li>
                         }
 

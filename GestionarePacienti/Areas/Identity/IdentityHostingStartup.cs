@@ -20,6 +20,7 @@ namespace GestionarePacienti.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("DbContextConnection")));
 
+                //error if not commenting out: SCheme already exists
                 //https://stackoverflow.com/questions/57253772/system-invalidoperationexception-scheme-already-exists-identity-application-a
                 //services.AddDefaultIdentity<GestionarePacientiUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 //    .AddEntityFrameworkStores<ApplicationDbContext>();
