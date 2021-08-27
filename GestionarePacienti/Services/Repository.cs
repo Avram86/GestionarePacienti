@@ -65,6 +65,11 @@ namespace GestionarePacienti.Services
             return await _type.ToListAsync();
         }
 
+        public IQueryable<T> GetQuery()
+        {
+            return _type.AsQueryable<T>();
+        }
+
         public bool ResourceExists(int id)
         {
             return _type.Any(T => T.Id == id);

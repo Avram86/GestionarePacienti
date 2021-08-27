@@ -11,6 +11,8 @@ namespace GestionarePacienti.Services
     {
         //auxilliaries
         bool ResourceExists(int id);
+        IQueryable<T> GetQuery();
+       
 
         //main
         Task<IEnumerable<T>> GetListAsync();

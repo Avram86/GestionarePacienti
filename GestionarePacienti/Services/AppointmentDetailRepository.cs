@@ -85,5 +85,10 @@ namespace GestionarePacienti.Services
                 await _context.SaveChangesAsync();
             }
         }
+
+        public IQueryable<AppointmentDetails> GetQuery()
+        {
+            return _context.AppointmentDetails.AsQueryable();
+        }
     }
 }
