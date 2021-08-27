@@ -16,6 +16,7 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Identity;
 using GestionarePacienti.Areas.Identity.Data;
 using GestionarePacienti.Hubs;
+using Microsoft.AspNetCore.Http;
 
 namespace GestionarePacienti
 {
@@ -57,6 +58,7 @@ namespace GestionarePacienti
             services.AddScoped<IRepository<Patient>, Repository<Patient>>();
             services.AddScoped<IAppointmentDetailRepository, AppointmentDetailRepository>();
             services.AddScoped<IRepository<Doctor>, Repository<Doctor>>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -87,7 +89,7 @@ namespace GestionarePacienti
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
-                endpoints.MapHub<ChatHub>("/chatHub");
+                endpoints.MapHub<ChatHub>("/chathub");
             });
         }
     }
