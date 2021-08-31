@@ -1,10 +1,6 @@
-﻿using GestionarePacienti.Models;
-using GestionarePacienti.Data;
+﻿using GestionarePacienti.Data;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using GestionarePacienti.Data.Entities;
 
 namespace GestionarePacienti.Services
 {

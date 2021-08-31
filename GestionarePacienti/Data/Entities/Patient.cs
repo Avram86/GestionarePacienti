@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GestionarePacienti.Models
+namespace GestionarePacienti.Data.Entities
 {
     public class Patient:BaseClass
     {

@@ -19,7 +19,7 @@ namespace GestionarePacienti.Migrations
                 .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("GestionarePacienti.Models.AppointmentDetails", b =>
+            modelBuilder.Entity("GestionarePacienti.Data.Entities.AppointmentDetails", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -64,7 +64,7 @@ namespace GestionarePacienti.Migrations
                     b.ToTable("AppointmentDetails");
                 });
 
-            modelBuilder.Entity("GestionarePacienti.Models.Doctor", b =>
+            modelBuilder.Entity("GestionarePacienti.Data.Entities.Doctor", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -84,7 +84,7 @@ namespace GestionarePacienti.Migrations
                     b.ToTable("Doctor");
                 });
 
-            modelBuilder.Entity("GestionarePacienti.Models.Patient", b =>
+            modelBuilder.Entity("GestionarePacienti.Data.Entities.Patient", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -129,13 +129,13 @@ namespace GestionarePacienti.Migrations
                     b.ToTable("Patient");
                 });
 
-            modelBuilder.Entity("GestionarePacienti.Models.AppointmentDetails", b =>
+            modelBuilder.Entity("GestionarePacienti.Data.Entities.AppointmentDetails", b =>
                 {
-                    b.HasOne("GestionarePacienti.Models.Doctor", "Doctor")
+                    b.HasOne("GestionarePacienti.Data.Entities.Doctor", "Doctor")
                         .WithMany("Appointments")
                         .HasForeignKey("DoctorId");
 
-                    b.HasOne("GestionarePacienti.Models.Patient", "Patient")
+                    b.HasOne("GestionarePacienti.Data.Entities.Patient", "Patient")
                         .WithMany("Appointments")
                         .HasForeignKey("PatientId");
 
@@ -144,12 +144,12 @@ namespace GestionarePacienti.Migrations
                     b.Navigation("Patient");
                 });
 
-            modelBuilder.Entity("GestionarePacienti.Models.Doctor", b =>
+            modelBuilder.Entity("GestionarePacienti.Data.Entities.Doctor", b =>
                 {
                     b.Navigation("Appointments");
                 });
 
-            modelBuilder.Entity("GestionarePacienti.Models.Patient", b =>
+            modelBuilder.Entity("GestionarePacienti.Data.Entities.Patient", b =>
                 {
                     b.Navigation("Appointments");
                 });

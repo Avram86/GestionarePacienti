@@ -1,4 +1,5 @@
-﻿using GestionarePacienti.Models;
+﻿using GestionarePacienti.Data.Entities;
+using GestionarePacienti.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

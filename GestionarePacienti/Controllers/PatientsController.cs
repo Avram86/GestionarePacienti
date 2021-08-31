@@ -9,6 +9,7 @@ using GestionarePacienti.Data;
 using GestionarePacienti.Models;
 using GestionarePacienti.Services;
 using Microsoft.AspNetCore.Authorization;
+using GestionarePacienti.Data.Entities;
 
 namespace GestionarePacienti
 {

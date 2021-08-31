@@ -1,5 +1,6 @@
-﻿using GestionarePacienti.Models;
+﻿using GestionarePacienti.Data.Entities;
 using GestionarePacienti.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace GestionarePacienti.Controllers
 {
+    [Authorize]
     public class StatisticsController:Controller
     {
         private readonly IAppointmentDetailRepository _repository;

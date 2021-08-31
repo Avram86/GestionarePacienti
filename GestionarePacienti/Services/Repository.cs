@@ -1,4 +1,5 @@
 ﻿using GestionarePacienti.Data;
+using GestionarePacienti.Data.Entities;
 using GestionarePacienti.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;

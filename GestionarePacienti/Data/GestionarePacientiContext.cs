@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using GestionarePacienti.Models;
+using GestionarePacienti.Data.Entities;
 using Microsoft.EntityFrameworkCore.Metadata;
 using GestionarePacienti.Enumerations;
 
@@ -16,11 +16,11 @@ namespace GestionarePacienti.Data
         {
         }
 
-        public DbSet<GestionarePacienti.Models.Patient> Patient { get; set; }
+        public DbSet<Patient> Patient { get; set; }
 
-        public DbSet<GestionarePacienti.Models.Doctor> Doctor { get; set; }
+        public DbSet<Doctor> Doctor { get; set; }
 
-        public DbSet<GestionarePacienti.Models.AppointmentDetails> AppointmentDetails { get; set; }
+        public DbSet<AppointmentDetails> AppointmentDetails { get; set; }
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{

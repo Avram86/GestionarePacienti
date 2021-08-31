@@ -1,4 +1,5 @@
-﻿using GestionarePacienti.Enumerations;
+﻿using GestionarePacienti.Data.Entities;
+using GestionarePacienti.Enumerations;
 using GestionarePacienti.Models;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GestionarePacienti.Models
+namespace GestionarePacienti.Data.Entities
 {
     public class Doctor:BaseClass
     {

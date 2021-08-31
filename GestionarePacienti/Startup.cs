@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Identity;
 using GestionarePacienti.Areas.Identity.Data;
 using GestionarePacienti.Hubs;
 using Microsoft.AspNetCore.Http;
+using GestionarePacienti.Data.Entities;
 
 namespace GestionarePacienti
 {
@@ -33,13 +34,13 @@ namespace GestionarePacienti
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
             services.AddRazorPages(
             //    options=>
-            //{
-            //    //sets home page as Login page
-            //    options.Conventions.AddAreaPageRoute("Identity", "/Account/Login", "");
-            //}
+            //{sets home page as Login page
+            //    options.Conventions.AddAreaPageRoute("Identity", "/Account/Login", "");}
             );
+
             services.AddSignalR();
 
             services.AddDbContext<GestionarePacientiContext>(options =>

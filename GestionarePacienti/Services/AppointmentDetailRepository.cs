@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System;
+using GestionarePacienti.Data.Entities;
 
 namespace GestionarePacienti.Services
 {
