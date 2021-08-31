@@ -27,6 +27,7 @@ namespace GestionarePacienti.Areas.Identity.Pages.Account
 
         public RegisterModel(
             UserManager<GestionarePacientiUser> userManager,
+            RoleManager<IdentityRole> roleManager,
             SignInManager<GestionarePacientiUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
@@ -76,6 +77,7 @@ namespace GestionarePacienti.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = new GestionarePacientiUser { UserName = Input.Email, Email = Input.Email };
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

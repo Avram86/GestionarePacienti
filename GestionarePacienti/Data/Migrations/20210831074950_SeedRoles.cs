@@ -19,6 +19,8 @@ namespace GestionarePacienti.Migrations
                 "operator@accountsapp.com",
                 "Admin123!",
                 new[] { "operator" });
+
+
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

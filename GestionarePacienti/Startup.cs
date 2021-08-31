@@ -47,7 +47,10 @@ namespace GestionarePacienti
                     options.UseSqlServer(Configuration.GetConnectionString("GestionarePacientiContext")));
 
             //https://forums.asp.net/t/2160569.aspx?i+have+issue+with+register+page
-            services.AddDefaultIdentity<GestionarePacientiUser>()
+            services.AddDefaultIdentity<GestionarePacientiUser>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = true;
+            })
                     .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<ApplicationDbContext>()
                     .AddDefaultTokenProviders();
@@ -55,6 +58,7 @@ namespace GestionarePacienti
             //services.AddIdentity<GestionarePacientiUser, IdentityRole>()
             //        .AddEntityFrameworkStores<GestionarePacientiContext>()
             //        .AddDefaultTokenProviders();
+
 
             services.AddScoped<IRepository<Patient>, Repository<Patient>>();
             services.AddScoped<IAppointmentDetailRepository, AppointmentDetailRepository>();
@@ -68,6 +72,7 @@ namespace GestionarePacienti
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
             }
             else
             {
