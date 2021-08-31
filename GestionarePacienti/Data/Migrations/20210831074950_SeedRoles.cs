@@ -17,10 +17,8 @@ namespace GestionarePacienti.Migrations
 
             migrationBuilder.AddUserWithRoles(
                 "operator@accountsapp.com",
-                "Admin123!",
+                "P@ssword1",
                 new[] { "operator" });
-
-
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

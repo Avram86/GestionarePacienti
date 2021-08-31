@@ -2,6 +2,7 @@
 using GestionarePacienti.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace GestionarePacienti.Controllers
         public async Task<IActionResult> Index()
         {
             var queryDoctors = _doctorRepository.GetQuery();
-            var doctorsList = queryDoctors.Select(d => d.Name).ToList();
+            var doctorsList =await queryDoctors.Select(d => d.Name).ToListAsync();
 
             var queryAppointments = _repository.GetQuery();
 
