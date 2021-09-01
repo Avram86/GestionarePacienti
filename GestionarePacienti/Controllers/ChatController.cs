@@ -28,7 +28,7 @@ namespace GestionarePacienti.Controllers
             else
             {
                 //https://chsakell.com/2013/05/02/4-basic-ways-to-pass-data-from-controller-to-view-in-asp-net-mvc/
-                TempData["userName"] = HttpContext.User.Identity.Name;
+                TempData["userName"] = HttpContext.User.Identity.Name.Split('@')[0];
             }
 
             return View();
