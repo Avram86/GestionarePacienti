@@ -1,23 +1,15 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using GestionarePacienti.Data;
 using GestionarePacienti.Services;
-using GestionarePacienti.Models;
-using System.IdentityModel.Tokens.Jwt;
-using Microsoft.AspNetCore.Identity;
-using GestionarePacienti.Areas.Identity.Data;
 using GestionarePacienti.Hubs;
-using Microsoft.AspNetCore.Http;
 using GestionarePacienti.Data.Entities;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Http;
 
 namespace GestionarePacienti
 {
@@ -33,6 +25,13 @@ namespace GestionarePacienti
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
             services.AddControllersWithViews();
 
             services.AddRazorPages(
@@ -46,23 +45,48 @@ namespace GestionarePacienti
             services.AddDbContext<GestionarePacientiContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("GestionarePacientiContext")));
 
-            //https://forums.asp.net/t/2160569.aspx?i+have+issue+with+register+page
-            services.AddDefaultIdentity<GestionarePacientiUser>(options =>
+            services.AddCors(options =>
             {
-                options.SignIn.RequireConfirmedAccount = true;
-            })
-                    .AddRoles<IdentityRole>()
-                    .AddEntityFrameworkStores<ApplicationDbContext>()
-                    .AddDefaultTokenProviders();
-
-            //services.AddIdentity<GestionarePacientiUser, IdentityRole>()
-            //        .AddEntityFrameworkStores<GestionarePacientiContext>()
-            //        .AddDefaultTokenProviders();
+                options.AddPolicy("ids", policy =>
+                {
+                    policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                });
+            });
 
 
             services.AddScoped<IRepository<Patient>, Repository<Patient>>();
             services.AddScoped<IAppointmentDetailRepository, AppointmentDetailRepository>();
             services.AddScoped<IRepository<Doctor>, Repository<Doctor>>();
+
+            //adding IDS4
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = "Cookies";
+                options.DefaultChallengeScheme = "oidc";
+            })
+                .AddCookie("Cookies")
+                .AddOpenIdConnect("oidc", options =>
+                {
+                    options.SignInScheme = "Cookies";
+
+                    options.Authority = "https://localhost:5001";
+                    options.RequireHttpsMetadata = false;
+
+                    options.ClientId = "mvc";
+                    options.ClientSecret = "mvcSecret";
+
+                    options.ResponseType = "code";
+
+                    options.Scope.Clear();
+                    options.Scope.Add("openid");
+                    options.Scope.Add("profile");
+                    options.Scope.Add("offline_access");
+
+                    options.SaveTokens = true;
+                    options.GetClaimsFromUserInfoEndpoint = true;
+                });
 
         }
 
@@ -84,6 +108,8 @@ namespace GestionarePacienti
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseCookiePolicy();
+            app.UseCors("ids");
 
             //enabling Authentication
             app.UseAuthentication();

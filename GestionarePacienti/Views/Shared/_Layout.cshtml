@@ -1,4 +1,5 @@
 ﻿<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <link rel="shortcut icon" type="image/x-icon" href="~/ajutor-medical.jpg" />
@@ -24,12 +25,17 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
 
-                    <partial name="_LoginPartial" />
+                 
 
                     <ul class="navbar-nav flex-grow-1">
+                        @*<li class="nav-item">
+            <a class="nav-link text-dark" href="https://localhost:5001/Account/Login">Login</a>
+        </li>*@
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
+                        </li>
 
-
-                        @if (User.Identity.IsAuthenticated)
+                        @if (User.Claims.FirstOrDefault(c => c.Type == "name")?.Value is not null)
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Patients" asp-action="Index">Patients</a>
@@ -45,6 +51,9 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Statistics">Statistics</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="https://localhost:5001/Account/Logout">Log out</a>
                             </li>
                         }
 
