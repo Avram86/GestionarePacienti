@@ -1,22 +1,10 @@
-﻿@using Microsoft.JSInterop
-@inject IJSRuntime _jsRuntime 
+﻿@model GestionarePacienti.Models.StatisticsViewModel
+@using Newtonsoft.Json
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-    var doctorsList = TempData["doctorsList"];
-    var resultValues = TempData["resultValues"];
-
-    async Task ExecuteAsync()
-    {
-        await _jsRuntime.InvokeVoidAsync("GenerateChart", doctorsList, resultValues);
-    }
-
-    if (Model is not null)
-    {
-        await ExecuteAsync();
-    }
 
 }
 
@@ -35,10 +23,24 @@
 <script src="~/js/Chart.js"></script>
 
 
-
-<h1>Chart </h1>
+<h1>Appointments per doctor chart</h1>
 
 <div id="chartdiv"></div>
+
+@section Scripts {
+
+<script type="text/javascript">
+
+    var viewModel = @Html.Raw(Json.Serialize(Model));
+    console.log(viewModel);
+
+    $(document).ready(function () {
+        GenerateChart(viewModel.doctorNames, viewModel.appointmentsPerDoctor);
+    });
+
+</script>
+
+}
 
 
 
