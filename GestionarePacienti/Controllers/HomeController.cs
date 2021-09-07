@@ -1,4 +1,6 @@
 ﻿using GestionarePacienti.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -39,5 +41,15 @@ namespace GestionarePacienti.Controllers
         {
             return SignOut("Cookies", "oidc");
         }
+
+        //https://stackoverflow.com/questions/55633778/redirect-mvc-action-to-identity-server-4-login-page-manually
+
+        //[Authorize]
+        public IActionResult Login()=>
+            Challenge(new AuthenticationProperties
+            {
+                RedirectUri = "/"
+            });
+       
     }
 }

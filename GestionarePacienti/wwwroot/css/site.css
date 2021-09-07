@@ -127,5 +127,5 @@ body1 {
 .badge-info{
     color:currentColor;
     background-color:transparent;
-    align-self:center;
+    align-self:center ;
 }

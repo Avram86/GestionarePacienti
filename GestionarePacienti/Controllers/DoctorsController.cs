@@ -117,7 +117,7 @@ namespace GestionarePacienti
             return View(doctor);
         }
 
-        [Authorize(Roles = "admin")]
+        //[Authorize(Roles = "admin")]
         // GET: Doctors/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -136,7 +136,7 @@ namespace GestionarePacienti
         }
 
 
-        [Authorize(Roles = "admin")]
+        //[Authorize(Roles = "admin")]
         // POST: Doctors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

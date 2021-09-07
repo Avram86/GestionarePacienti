@@ -17,8 +17,7 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light border-bottom box-shadow mb-3 " style="background-color:blanchedalmond !important">
             <div class="container">
 
-
-                <img src="~/Gest logo.png" />
+                <img src="~/Gestionare Pacienti logo.png" />
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -33,9 +32,8 @@
 
                         @if (User.Claims.FirstOrDefault(c => c.Type == "name")?.Value is not null)
                         {
-                        <li>
+                          
                             <span class="badge-info">Hello, @User.Claims.FirstOrDefault(c => c.Type == "name")?.Value.Split('@')[0]!</span>
-                        </li>
 
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
@@ -44,7 +42,7 @@
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Login">Login</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
                             </li>
                         }
 

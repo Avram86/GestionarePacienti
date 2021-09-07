@@ -58,13 +58,6 @@ namespace GestionarePacienti.Controllers
                 AppointmentsPerDoctor = result
             };
             
-
-            //if(doctorsList is not null && result.Values is not null)
-            //{
-            //    TempData["doctorsList"] = doctorsList;
-            //    TempData["resultValues"] = result.Values;
-            //}
-
             return View(model);
         }
     }
