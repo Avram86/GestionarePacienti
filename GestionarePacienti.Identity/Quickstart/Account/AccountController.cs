@@ -72,6 +72,7 @@ namespace IdentityServerHost.Quickstart.UI
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginInputModel model, string button)
         {
+          
             // check if we are in the context of an authorization request
             var context = await _interaction.GetAuthorizationContextAsync(model.ReturnUrl);
 
@@ -109,9 +110,11 @@ namespace IdentityServerHost.Quickstart.UI
                 {
                     var user = await _userManager.FindByNameAsync(model.Username);
                     await _events.RaiseAsync(new UserLoginSuccessEvent(user.UserName, user.Id, user.UserName, clientId: context?.Client.ClientId));
+                    
 
                     if (context != null)
                     {
+                       
                         if (context.IsNativeClient())
                         {
                             // The client is native, so this change in how to
@@ -200,6 +203,7 @@ namespace IdentityServerHost.Quickstart.UI
             }
 
             return View("LoggedOut", vm);
+
         }
 
         [HttpGet]

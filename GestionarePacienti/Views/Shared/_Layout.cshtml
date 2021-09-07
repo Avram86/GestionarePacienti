@@ -16,7 +16,8 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light border-bottom box-shadow mb-3 " style="background-color:blanchedalmond !important">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"></a>
+
+
                 <img src="~/Gest logo.png" />
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -25,37 +26,45 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
 
-                 
 
                     <ul class="navbar-nav flex-grow-1">
-                        @*<li class="nav-item">
-            <a class="nav-link text-dark" href="https://localhost:5001/Account/Login">Login</a>
-        </li>*@
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Index">Login</a>
-                        </li>
+
+
 
                         @if (User.Claims.FirstOrDefault(c => c.Type == "name")?.Value is not null)
                         {
+                        <li>
+                            <span class="badge-info">Hello, @User.Claims.FirstOrDefault(c => c.Type == "name")?.Value.Split('@')[0]!</span>
+                        </li>
+
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Patients" asp-action="Index">Patients</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Doctors" asp-action="Index">Doctors</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="AppointmentDetails" asp-action="Index">Appointments</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Chat">Chat</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Statistics">Statistics</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" href="https://localhost:5001/Account/Logout">Log out</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
                             </li>
                         }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Login">Login</a>
+                            </li>
+                        }
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Patients" asp-action="Index">Patients</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Doctors" asp-action="Index">Doctors</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="AppointmentDetails" asp-action="Index">Appointments</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Chat">Chat</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Statistics">Statistics</a>
+                        </li>
+
+
 
 
                     </ul>
@@ -71,7 +80,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container" style="max-width: initial !important">
-            &copy; 2021 - Gestionare Pacienti 
+            &copy; 2021 - Gestionare Pacienti
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

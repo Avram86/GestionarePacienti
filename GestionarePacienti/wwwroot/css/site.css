@@ -123,3 +123,9 @@ body1 {
     float: left;
     color: #999;
 }
+
+.badge-info{
+    color:currentColor;
+    background-color:transparent;
+    align-self:center;
+}

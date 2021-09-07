@@ -1,6 +1,7 @@
 ﻿using GestionarePacienti.Data;
 using GestionarePacienti.Hubs;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -15,9 +16,14 @@ namespace GestionarePacienti.Controllers
     [Authorize]
     public class ChatController: Controller
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
+        public ChatController(IHttpContextAccessor httpContextAccessor)
+        {
+            _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
+        }
         //https://stackoverflow.com/questions/33057838/httpcontext-is-null-for-mvc-controller/33057885
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             if (HttpContext == null)
                 throw new ArgumentNullException("HttpContext");
@@ -27,8 +33,7 @@ namespace GestionarePacienti.Controllers
                 throw new ArgumentNullException("HttpContext.User.Identity");
             else
             {
-                //https://chsakell.com/2013/05/02/4-basic-ways-to-pass-data-from-controller-to-view-in-asp-net-mvc/
-                TempData["userName"] = HttpContext.User.Identity.Name.Split('@')[0];
+                ViewData["userName"]=_httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(c=>c.Type=="name").Value.Split('@')[0];
             }
 
             return View();

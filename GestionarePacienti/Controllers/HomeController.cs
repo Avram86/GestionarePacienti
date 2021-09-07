@@ -33,5 +33,11 @@ namespace GestionarePacienti.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        //for logging out of IDS
+        public IActionResult Logout()
+        {
+            return SignOut("Cookies", "oidc");
+        }
     }
 }
